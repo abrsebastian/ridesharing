@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>API_KEY</key>
+	<string>AIzaSyBFkU4n2IAWUGDcGBgj2_ehG6bLncKXIh0</string>
+	<key>GCM_SENDER_ID</key>
+	<string>871328405563</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.ridesharing.personal</string>
+	<key>PROJECT_ID</key>
+	<string>uber-clone-dd74b</string>
+	<key>STORAGE_BUCKET</key>
+	<string>uber-clone-dd74b.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:871328405563:ios:c465af4a428773ee57241e</string>
+	<key>DATABASE_URL</key>
+	<string>https://uber-clone-dd74b-default-rtdb.firebaseio.com</string>
+</dict>
+</plist>
