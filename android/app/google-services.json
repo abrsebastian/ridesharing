@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "871328405563",
+    "firebase_url": "https://uber-clone-dd74b-default-rtdb.firebaseio.com",
+    "project_id": "uber-clone-dd74b",
+    "storage_bucket": "uber-clone-dd74b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:871328405563:android:8f219ed8bba7853957241e",
+        "android_client_info": {
+          "package_name": "com.example.ridesharing.personal"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAjA-M2qIOZz-I3U_GQeQLjBbmMmFpyvwk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
