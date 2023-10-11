@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'dart:ui';
+import '../generic/my_decorations.dart';
+import 'loginpage.dart';
 
-import 'package:ridesharing_personal/AllScreens/registrationscreen.dart';
-import 'package:ridesharing_personal/generic/my_decorations.dart';
-
-class LoginScreen extends StatelessWidget {
-  const LoginScreen({super.key});
+class RegistrationScreen extends StatelessWidget {
+  const RegistrationScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context
+      ) {
     return Scaffold(
       body: Container(
         decoration: MyDecorations.blackAndYellowDecoration(),
@@ -27,7 +27,7 @@ class LoginScreen extends StatelessWidget {
                 ),
                 SizedBox(height: 20.0),
                 Text(
-                  'Login as a Rider',
+                  'Register as a Rider',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontFamily: "Brand Bold",
@@ -35,16 +35,29 @@ class LoginScreen extends StatelessWidget {
                     color: Colors.amberAccent,
                   ),
                 ),
-                SizedBox(height: 50),
+                SizedBox(height: 25),
+                TextField(
+                  keyboardType: TextInputType.text,
+                  style: TextStyle(color: Colors.white),
+                  decoration: MyDecorations.myCustomTextfield('name'),
+                ),
+                SizedBox(height: 10,),
                 TextField(
                   keyboardType: TextInputType.emailAddress,
                   style: TextStyle(color: Colors.white),
-                  decoration: MyDecorations.myCustomTextfield('e-mail'),
+                  decoration: MyDecorations.myCustomTextfield("e-mail"),
                 ),
-                SizedBox(height: 25,),
+                SizedBox(height: 10,),
                 TextField(
+                  keyboardType: TextInputType.phone,
+                  style: TextStyle(color: Colors.white),
+                  decoration: MyDecorations.myCustomTextfield("phone"),
+                ),
+                SizedBox(height: 10,),
+                TextField(
+                  style: TextStyle(color: Colors.white),
                   obscureText: true,
-                  decoration: MyDecorations.myCustomTextfield('password'),
+                  decoration: MyDecorations.myCustomTextfield("password"),
                 ),
                 SizedBox(height: 50,),
                 Container(
@@ -52,29 +65,27 @@ class LoginScreen extends StatelessWidget {
                   width: MediaQuery.of(context).size.width,
                   decoration: MyDecorations.gradientButtonDecoration(),
                   child:Center(
-                    child: Text('Login',
-                    style: TextStyle(
-                      fontSize: 25,
-                      color: Colors.black
-                    ),),
+                    child: Text('Create Account',
+                      style: TextStyle(
+                          fontSize: 25,
+                          color: Colors.black
+                      ),),
                   ),),
                 SizedBox(height: 25,),
                 TextButton(onPressed: (){
-                  Navigator.push(
+                  Navigator.pop(
                       context,
-                      MaterialPageRoute(builder:(context)=>RegistrationScreen()));
+                      MaterialPageRoute(builder:(context)=>LoginScreen()));
                 },
-                    child: Text('Do not have an account? Register here',
-                    style: TextStyle(
-                      fontSize: 20,
-                      color: Colors.black
-                    ),))
+                    child: Text('Already have an account? Login here',
+                      style: TextStyle(
+                          fontSize: 20,
+                          color: Colors.black
+                      ),))
               ],
             ),
           ),
         ),
       ),
     );
-  }
-
-}
+  }}
