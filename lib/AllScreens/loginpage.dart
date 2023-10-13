@@ -5,7 +5,7 @@ import 'package:ridesharing_personal/AllScreens/registrationscreen.dart';
 import 'package:ridesharing_personal/generic/my_decorations.dart';
 
 class LoginScreen extends StatelessWidget {
-  const LoginScreen({super.key});
+  static const String idScreen = "login";
 
   @override
   Widget build(BuildContext context) {
@@ -60,9 +60,7 @@ class LoginScreen extends StatelessWidget {
                   ),),
                 SizedBox(height: 25,),
                 TextButton(onPressed: (){
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(builder:(context)=>RegistrationScreen()));
+                  Navigator.pushNamedAndRemoveUntil(context, RegistrationScreen.idScreen, (route) => false);
                 },
                     child: Text('Do not have an account? Register here',
                     style: TextStyle(
