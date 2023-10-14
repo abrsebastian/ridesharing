@@ -11,7 +11,7 @@ class RegistrationScreen extends StatelessWidget {
   static const String idScreen = "registrater";
   
   TextEditingController nameTextEditingController = TextEditingController();
-  TextEditingController mailTextEditingController = TextEditingController();
+  TextEditingController emailTextEditingController = TextEditingController();
   TextEditingController phoneTextEditingController = TextEditingController();
   TextEditingController passwordTextEditingController = TextEditingController();
 
@@ -52,7 +52,7 @@ class RegistrationScreen extends StatelessWidget {
                 ),
                 SizedBox(height: 10,),
                 TextField(
-                  controller: mailTextEditingController,
+                  controller: emailTextEditingController,
                   keyboardType: TextInputType.emailAddress,
                   style: TextStyle(color: Colors.white),
                   decoration: MyDecorations.myCustomTextfield("e-mail"),
@@ -77,9 +77,9 @@ class RegistrationScreen extends StatelessWidget {
                     if(nameTextEditingController.text.length < 3){
                       displayToastMessage("Name must be atleast 3 characters.", context);
                     }
-                    else if(mailTextEditingController.text.contains("@")){
+                 /*   else if(emailTextEditingController.text.contains("@")){
                       displayToastMessage("Email address is not valid", context);
-                    }
+                    }*/
                     else if(phoneTextEditingController.text.isEmpty){
                       displayToastMessage("Phone number is mandatory", context);
                     }
@@ -125,7 +125,7 @@ class RegistrationScreen extends StatelessWidget {
   Future<void> registerNewUser(BuildContext context) async {
     try {
       UserCredential userCredential = await _firebaseAuth.createUserWithEmailAndPassword(
-        email: mailTextEditingController.text,
+        email: emailTextEditingController.text,
         password: passwordTextEditingController.text,
       );
       User? firebaseUser = userCredential.user;
@@ -135,7 +135,7 @@ class RegistrationScreen extends StatelessWidget {
 
         Map userDataMap = {
           "name": nameTextEditingController.text.trim(),
-          "email": mailTextEditingController.text.trim(),
+          "email": emailTextEditingController.text.trim(),
           "phone": phoneTextEditingController.text.trim(),
           "password": passwordTextEditingController.text.trim(),
         };
@@ -149,9 +149,18 @@ class RegistrationScreen extends StatelessWidget {
         // Manejar el error
       }
     } catch (e) {
+      if(!isEmailValid(emailTextEditingController.text)){
+        displayToastMessage("Email address is not valid", context);
+        return;
+      }
       // Manejo de errores
       displayToastMessage("Error" + e.toString(), context);
     }
+  }
+
+  bool isEmailValid(String email) {
+    final emailRegExp = RegExp(r'^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)*(\.[a-z]{2,4})$');
+    return emailRegExp.hasMatch(email);
   }
 }
 
