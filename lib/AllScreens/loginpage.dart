@@ -100,7 +100,7 @@ class LoginScreen extends StatelessWidget {
 
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
-  Future<void> loginAndAuthenticateUser(BuildContext context) async {
+  /*Future<void> loginAndAuthenticateUser(BuildContext context) async {
     try {
       UserCredential userCredential = await _firebaseAuth.signInWithEmailAndPassword(
         email: emailTextEditingController.text,
@@ -131,6 +131,45 @@ class LoginScreen extends StatelessWidget {
       displayToastMessage("Error: $e", context);
       rethrow;
     }
+  }*/
+
+  Future<void> loginAndAuthenticateUser(BuildContext context) async {
+    try {
+      UserCredential userCredential = await _firebaseAuth.signInWithEmailAndPassword(
+        email: emailTextEditingController.text,
+        password: passwordTextEditingController.text,
+      );
+
+      if (userCredential != null) {
+        // Autenticación exitosa, continuar con el flujo de la aplicación.
+        User? firebaseUser = userCredential.user;
+        print("User ID: ${firebaseUser?.uid}");
+        DatabaseEvent snap = await usersRefs.child(firebaseUser!.uid).once();
+        print("Snapshot: $snap");
+        if (snap != null && snap.snapshot.value != null) {
+          Navigator.popAndPushNamed(context, MainScreen.idScreen);
+          displayToastMessage("You are logged-in now", context);
+        } else {
+          print("User not found in database");
+          _firebaseAuth.signOut();
+          displayToastMessage("No records exist for this user. Please create a new account", context);
+        }
+      } else {
+        // Error de autenticación debido a una contraseña incorrecta.
+        displayToastMessage("Invalid password", context);
+      }
+    } /*catch (e) {
+      if (!isEmailValid(emailTextEditingController.text)) {
+        displayToastMessage("Email address is not valid", context);
+        return;
+      }
+      displayToastMessage("Error: $e", context);
+      rethrow;
+    }*/
+    catch (e){
+      displayToastMessage("Invalid Email or Password", context);
+    }
   }
+
 
 }
