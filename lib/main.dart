@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:ridesharing_personal/AllScreens/loginpage.dart';
 import 'package:ridesharing_personal/AllScreens/mainscreen.dart';
 import 'package:ridesharing_personal/AllScreens/registrationscreen.dart';
+import 'package:ridesharing_personal/configmaps.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 
 
@@ -26,7 +28,7 @@ class MyApp extends StatelessWidget {
         fontFamily: "Brand Bold",
         primarySwatch: Colors.blue,
       ),
-      initialRoute: LoginScreen.idScreen,
+      initialRoute: MainScreen.idScreen,
       routes: {
         RegistrationScreen.idScreen: (context) => RegistrationScreen(),
         LoginScreen.idScreen: (context) => LoginScreen(),
