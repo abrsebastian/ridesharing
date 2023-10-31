@@ -10,6 +10,8 @@ class MainScreen extends StatelessWidget {
   Completer<GoogleMapController> _controllerGoogleMap = Completer();
   late GoogleMapController newGoogleMapController;
 
+  GlobalKey<ScaffoldState> scaffoldKey = new GlobalKey<ScaffoldState>();
+
   static const CameraPosition _kGooglePlex = CameraPosition(
     target: LatLng(37.42796133580664, -122.085749655962),
     zoom: 14.4746,
@@ -18,11 +20,58 @@ class MainScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: scaffoldKey,
       appBar: AppBar(
         title: Text(
           'Main Screen',
           style: TextStyle(
             fontSize: 30
+          ),
+        ),
+      ),
+      drawer:Container(
+        color: Colors.white,
+        width: 255,
+        child: Drawer(
+          child: ListView(
+            children: [
+              //Drawer header
+              Container(
+                height: 165,
+                child: DrawerHeader(
+                  decoration: BoxDecoration(color: Colors.white),
+                  child: Row(
+                    children: [
+                      Image.asset('images/user_icon.png', height: 65, width: 65,),
+                      SizedBox(width: 15,),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text('Profile Name', style: TextStyle(fontSize: 15, fontFamily: "Brand-Bold"),),
+                          SizedBox(height: 6,),
+                          Text('Visit Profile'),
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+              ),
+              DividerWidget(),
+              SizedBox(height: 30,),
+              //Drawer Body
+              ListTile(
+                leading: Icon(Icons.history),
+                title: Text('History', style: TextStyle(fontSize: 15),),
+              ),
+              ListTile(
+                leading: Icon(Icons.person),
+                title: Text('Visit Profile', style: TextStyle(fontSize: 15),),
+              ),
+              ListTile(
+                leading: Icon(Icons.info),
+                title: Text('About', style: TextStyle(fontSize: 15),),
+              ),
+            ],
           ),
         ),
       ),
@@ -37,12 +86,41 @@ class MainScreen extends StatelessWidget {
               newGoogleMapController = controller;
             },
           ),
+          //hamburguer Botton
+          Positioned(
+            top: 45,
+            left: 20,
+            child: GestureDetector(
+              onTap:(){
+                scaffoldKey.currentState?.openDrawer();
+              },
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(22),
+                  boxShadow:[
+                    BoxShadow(
+                      color:Colors.black,
+                      blurRadius: 6,
+                      spreadRadius: 0.5,
+                      offset: Offset(0.7, 0.7),
+                    )
+                  ]
+                ),
+                child: CircleAvatar(
+                  backgroundColor: Colors.white,
+                  child: Icon(Icons.menu, color: Colors.black,),
+                  radius: 20,
+                ),
+              ),
+            ),
+          ),
           Positioned(
             left: 0.0,
             right: 0.0,
             bottom: 0.0,
             child: Container(
-              height: 320.0,
+              height: 400.0,
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.only(
@@ -90,43 +168,49 @@ class MainScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-                    SizedBox(height: 10.0,),
-                    Row(
-                      children: [
-                        Icon(Icons.home, color: Colors.grey,),
-                        SizedBox(width: 8.0,),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text('Add Home'),
-                            SizedBox(height: 4.0,),
-                            Text('Your live home address',
-                              style: TextStyle(
-                                  color: Colors.grey,
-                                  fontSize: 15.0),)
-                          ],
-                        ),
-                      ],
+                    SizedBox(height: 20.0,),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8),
+                      child: Row(
+                        children: [
+                          Icon(Icons.home, color: Colors.grey,),
+                          SizedBox(width: 8.0,),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text('Add Home'),
+                              SizedBox(height: 4.0,),
+                              Text('Your live home address',
+                                style: TextStyle(
+                                    color: Colors.grey,
+                                    fontSize: 15.0),)
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
-                    SizedBox(height: 10.0,),
+                    SizedBox(height: 20.0,),
                     DividerWidget(),
-                    SizedBox(height: 10.0,),
-                    Row(
-                      children: [
-                        Icon(Icons.home, color: Colors.grey,),
-                        SizedBox(width: 12.0,),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text('Add Work'),
-                            SizedBox(height: 4.0,),
-                            Text('Your office address',
-                              style: TextStyle(
-                                  color: Colors.grey,
-                                  fontSize: 15.0),)
-                          ],
-                        ),
-                      ],
+                    SizedBox(height: 20.0,),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8),
+                      child: Row(
+                        children: [
+                          Icon(Icons.work, color: Colors.grey,),
+                          SizedBox(width: 12.0,),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text('Add Work'),
+                              SizedBox(height: 4.0,),
+                              Text('Your office address',
+                                style: TextStyle(
+                                    color: Colors.grey,
+                                    fontSize: 15.0),)
+                            ],
+                          ),
+                        ],
+                      ),
                     )
                   ],
                 ),
