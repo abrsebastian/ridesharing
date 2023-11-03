@@ -120,7 +120,6 @@ class _MainScreenState extends State<MainScreen> {
                     newGoogleMapController = controller;
 
                     final apiKey = ConfigApis.googleMapsAPIKey;
-
                     locatePosition();
                   },
                 ),
