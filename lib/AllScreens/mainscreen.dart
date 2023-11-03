@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:ridesharing_personal/AllWidgets/divider.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:ridesharing_personal/configmaps.dart';
 
 class MainScreen extends StatefulWidget {
   static const String idScreen = "/mainscreen";
@@ -117,6 +118,8 @@ class _MainScreenState extends State<MainScreen> {
                   onMapCreated: (GoogleMapController controller){
                     _controllerGoogleMap.complete(controller);
                     newGoogleMapController = controller;
+
+                    final apiKey = ConfigApis.googleMapsAPIKey;
 
                     locatePosition();
                   },
